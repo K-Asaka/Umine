@@ -43,8 +43,9 @@ public class ButtonFragment extends Fragment {
 	public void onStart() {
 		super.onStart();
 		//Button countBtn = (Button) getActivity().findViewById(R.id.countBtn);
+		//Button tweetBtn = (Button) getActivity().findViewById(R.id.tweet);
 		ImageButton countBtn = (ImageButton)getActivity().findViewById(R.id.countBtn);
-		Button tweetBtn = (Button) getActivity().findViewById(R.id.tweet);
+		ImageButton tweetBtn = (ImageButton) getActivity().findViewById(R.id.tweet);
 		TextView text = (TextView) getActivity().findViewById(R.id.none);
 		final TextView counter = (TextView) getActivity().findViewById(R.id.counter);
 		sound = MediaPlayer.create(getActivity(), R.raw.umai);
