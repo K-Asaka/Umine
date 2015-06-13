@@ -8,19 +8,47 @@
         android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50dp"
-        android:text="0" />
+        android:layout_gravity="center"
+        android:text="0"
+        android:textSize="50dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/caputure"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="40dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="40dp"
+            android:text="写真がありません" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/countBtn"
         android:layout_width="300dp"
         android:layout_height="150dp"
+        android:layout_gravity="center"
         android:text="うまい！" />
 
     <Button
         android:id="@+id/tweet"
         android:layout_width="300dp"
         android:layout_height="100dp"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:text="押した回数をツイートする" />
 
