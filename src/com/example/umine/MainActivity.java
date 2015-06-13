@@ -17,7 +17,6 @@ public class MainActivity extends FragmentActivity {
 		FragmentManager fManager = getSupportFragmentManager();
 		UmineFragmentAdapter adpt = new UmineFragmentAdapter(fManager);
 		ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
-		viewPager.setCurrentItem(1);
 		viewPager.setAdapter(adpt);
 	}
 

@@ -1,8 +1,5 @@
 package com.example.umine;
 
-import java.util.ArrayList;
-
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -40,5 +37,6 @@ public class UmineFragmentAdapter extends FragmentPagerAdapter {
 	public CharSequence getPageTitle(int position) {
 		return "Page " + (position);
 	}
+	
 
 }
