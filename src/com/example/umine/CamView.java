@@ -16,7 +16,13 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
 public class CamView extends SurfaceView implements Callback ,PictureCallback{
+
+	public CamView(Context context) {
+		super(context);
+	}
+
 	private Camera camera;
+	/* 19:25
 	private Context context;
 	public CamView(Context context,Camera camera) {
 		super(context);
@@ -26,10 +32,11 @@ public class CamView extends SurfaceView implements Callback ,PictureCallback{
 		holder.addCallback(this);
 		holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 	}
-
+*/
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		try {
+			camera=Camera.open();
 			camera.setPreviewDisplay(holder);
 		} catch(IOException e) {
 		}
