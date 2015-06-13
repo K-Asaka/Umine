@@ -18,6 +18,7 @@ public class TitleActivity extends Activity {
 		public void run() {
 			Intent intent = new Intent(context, MainActivity.class);
 			startActivity(intent);
+			finish();
 		}
 	};
 

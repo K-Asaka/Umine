@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     android:background="#0077ff">
     
-    <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textColor="#ffff00"
-        android:text="フラメンコ！" />
+    <ImageButton
+        android:id="@+id/btnUmai"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="#ffffff"
+        android:contentDescription="うまい！"
+        android:fadingEdge="horizontal|vertical"
+        android:src="@drawable/umai_button" />
     
 </LinearLayout>
