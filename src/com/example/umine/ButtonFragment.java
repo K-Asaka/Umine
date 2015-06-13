@@ -27,6 +27,9 @@ public class ButtonFragment extends Fragment {
 
 		Log.d(TAG, "onCreateView呼ばれた");
 		View v = inflater.inflate(R.layout.btn_count_layout, container, false);
+		TextView counter = (TextView) getActivity().findViewById(R.id.counter);
+		cntText = String.valueOf(cnt);
+		counter.setText(cnt);
 
 		return v;
 	}
