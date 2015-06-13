@@ -2,14 +2,18 @@ package com.example.umine;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 public class SumimasenFragment extends Fragment {
 	private static final String TAG = "SumimasenFragment";
+	private ImageButton btnSumimasen = null;
+	private MediaPlayer sound = null;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -30,6 +34,15 @@ public class SumimasenFragment extends Fragment {
 			Bundle savedInstanceState) {
 		Log.v(TAG, "onCreateView()が呼ばれました。");
 		View view = inflater.inflate(R.layout.sumimasen_fragment, container, false);
+		sound = MediaPlayer.create(getActivity(), R.raw.excuseme);
+		btnSumimasen = (ImageButton)view.findViewById(R.id.btnSumimasen);
+		btnSumimasen.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				sound.start();
+			}
+		});
 		return view;
 	}
 

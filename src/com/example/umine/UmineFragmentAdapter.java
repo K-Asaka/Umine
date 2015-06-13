@@ -1,15 +1,12 @@
 package com.example.umine;
 
-import java.util.ArrayList;
-
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 public class UmineFragmentAdapter extends FragmentPagerAdapter {
-	
+	private static final int fragmentNum = 4;
+
 	public UmineFragmentAdapter(FragmentManager fm) {
 		super(fm);
 	}
@@ -18,9 +15,12 @@ public class UmineFragmentAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int pos) {
 		switch (pos) {
 		case 0:
+			return new UmineFragment();
+		case 1:
 			return new CameraFragment();
-		// case 1はうまい！
 		case 2:
+			return new ButtonFragment();
+		case 3:
 			return new SumimasenFragment();
 		default:
 			return new UmineFragment();
@@ -30,9 +30,9 @@ public class UmineFragmentAdapter extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 3;
+		return fragmentNum;
 	}
-	
+
 	@Override
 	public CharSequence getPageTitle(int position) {
 		return "Page " + (position);
