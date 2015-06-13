@@ -41,7 +41,7 @@
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:text="うまい！" />
+        android:text="@string/umai" />
 
     <Button
         android:id="@+id/tweet"
@@ -49,6 +49,6 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:text="押した回数をツイートする" />
+        android:text="@string/twitter" />
 
 </LinearLayout>

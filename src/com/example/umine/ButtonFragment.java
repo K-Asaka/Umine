@@ -2,6 +2,7 @@ package com.example.umine;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,6 +17,7 @@ public class ButtonFragment extends Fragment {
 
 	static int cnt = 0;
 	String cntText = "";
+	MediaPlayer sound = null;
 
 	private static final String TAG = "ButtonFragment";
 
@@ -36,6 +38,7 @@ public class ButtonFragment extends Fragment {
 		Button tweetBtn = (Button) getActivity().findViewById(R.id.tweet);
 		TextView text = (TextView) getActivity().findViewById(R.id.none);
 		final TextView counter = (TextView) getActivity().findViewById(R.id.counter);
+		sound = MediaPlayer.create(getActivity(), R.raw.umai);
 		ImageView caputure = (ImageView) getActivity().findViewById(R.id.caputure);
 		Bitmap bmp = ((BitmapDrawable) caputure.getDrawable()).getBitmap();
 
@@ -47,6 +50,7 @@ public class ButtonFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				cnt += 1;
+				sound.start();
 				cntText = String.valueOf(cnt);
 				counter.setText(cntText);
 			}
