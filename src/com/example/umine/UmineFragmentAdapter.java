@@ -1,10 +1,8 @@
 package com.example.umine;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 public class UmineFragmentAdapter extends FragmentPagerAdapter {
 
@@ -19,6 +17,8 @@ public class UmineFragmentAdapter extends FragmentPagerAdapter {
 			return new CameraFragment();
 		case 1:
 			return new SumimasenFragment();
+		case 2:
+			return new ButtonFragment();
 		default:
 			return new UmineFragment();
 		}
@@ -29,7 +29,7 @@ public class UmineFragmentAdapter extends FragmentPagerAdapter {
 		// TODO Auto-generated method stub
 		return 3;
 	}
-	
+
 	@Override
 	public CharSequence getPageTitle(int position) {
 		return "Page " + (position);

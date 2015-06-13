@@ -2,6 +2,7 @@ package com.example.umine;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +11,28 @@ import android.widget.TextView;
 
 public class ButtonFragment extends Fragment {
 
-	static int cnt ;
+	static int cnt = 0;
 	String cntText = "";
 
+	private static final String TAG = "ButtonFragment";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+		Log.d(TAG, "onCreateView呼ばれた");
 		View v = inflater.inflate(R.layout.btn_count_layout, container, false);
 
-		Button countBtn = (Button)getActivity().findViewById(R.id.countBtn);
-		Button tweetBtn = (Button)getActivity().findViewById(R.id.tweet);
-		final TextView counter = (TextView)getActivity().findViewById(R.id.counter);
+		return v;
+	}
 
+	@Override
+	public void onStart() {
+		super.onStart();
+		Button countBtn = (Button) getActivity().findViewById(R.id.countBtn);
+		Button tweetBtn = (Button) getActivity().findViewById(R.id.tweet);
+		final TextView counter = (TextView) getActivity().findViewById(
+				R.id.counter);
 
 		countBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -39,9 +48,8 @@ public class ButtonFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 
-
 			}
 		});
-		return v;
+
 	}
 }
