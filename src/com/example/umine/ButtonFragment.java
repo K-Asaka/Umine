@@ -34,14 +34,14 @@ public class ButtonFragment extends Fragment {
 		super.onStart();
 		Button countBtn = (Button) getActivity().findViewById(R.id.countBtn);
 		Button tweetBtn = (Button) getActivity().findViewById(R.id.tweet);
-		ImageView caputure = (ImageView)getActivity().findViewById(R.id.caputure);
-		Bitmap bmp = ((BitmapDrawable)caputure.getDrawable()).getBitmap();
+		TextView text = (TextView) getActivity().findViewById(R.id.none);
+		final TextView counter = (TextView) getActivity().findViewById(R.id.counter);
+		ImageView caputure = (ImageView) getActivity().findViewById(R.id.caputure);
+		Bitmap bmp = ((BitmapDrawable) caputure.getDrawable()).getBitmap();
 
-
-		final TextView counter = (TextView) getActivity().findViewById(
-				R.id.counter);
-
-
+		if (bmp == null) {
+			text.setText("写真がありません");
+		}
 
 		countBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
