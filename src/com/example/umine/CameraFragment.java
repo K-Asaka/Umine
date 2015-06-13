@@ -1,15 +1,22 @@
 package com.example.umine;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 
 public class CameraFragment extends Fragment {
@@ -55,6 +62,39 @@ public class CameraFragment extends Fragment {
 			camera.stopPreview();
 			camera.release();
 		}
+
+	};
+	private Camera.PictureCallback pictrueListener = new Camera.PictureCallback() {
+
+		@Override
+		public void onPictureTaken(byte[] data, Camera camera) {
+			if(data!=null){
+				String saveDir=Environment.getExternalStorageDirectory().getPath()+"/test9999999/";
+
+				File file= new File(saveDir);
+					if(file.mkdir())System.out.println("ディレクトリ作成");
+				String imgPath=saveDir+new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime())+".jpg";
+				System.out.println(imgPath);
+				FileOutputStream fos;
+				try{
+					fos=new FileOutputStream(imgPath,true);
+					fos.write(data);
+					fos.close();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			camera.startPreview();
+		}
+	};
+	OnTouchListener ontouchListener = new OnTouchListener() {
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			if(event.getAction()==MotionEvent.ACTION_DOWN)
+				if(camera!=null)
+					camera.takePicture(null, null, pictrueListener);
+			return false;
+		}
 	};
 //	private Camera.PictureCallback pictureListener= new Camera.PictureCallback() {
 //
@@ -73,6 +113,7 @@ public class CameraFragment extends Fragment {
 		SurfaceHolder holder=camSurfaceView.getHolder();
 		holder.addCallback(surfaceListener);
 		holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+		view.setOnTouchListener(ontouchListener);
 		return view;
 	}
 
