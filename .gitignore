@@ -1,0 +1,3 @@
+#bin genの除外
+bin/
+gen/
