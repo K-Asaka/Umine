@@ -1,5 +1,7 @@
 package com.example.umine;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 
 public class UmineFragmentAdapter extends FragmentPagerAdapter {
-
+	
 	public UmineFragmentAdapter(FragmentManager fm) {
 		super(fm);
 	}
@@ -17,7 +19,8 @@ public class UmineFragmentAdapter extends FragmentPagerAdapter {
 		switch (pos) {
 		case 0:
 			return new CameraFragment();
-		case 1:
+		// case 1はうまい！
+		case 2:
 			return new SumimasenFragment();
 		default:
 			return new UmineFragment();
