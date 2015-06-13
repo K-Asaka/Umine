@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,11 +42,11 @@ public class ButtonFragment extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		Button countBtn = (Button) getActivity().findViewById(R.id.countBtn);
+		//Button countBtn = (Button) getActivity().findViewById(R.id.countBtn);
+		ImageButton countBtn = (ImageButton)getActivity().findViewById(R.id.countBtn);
 		Button tweetBtn = (Button) getActivity().findViewById(R.id.tweet);
 		TextView text = (TextView) getActivity().findViewById(R.id.none);
-		final TextView counter = (TextView) getActivity().findViewById(
-				R.id.counter);
+		final TextView counter = (TextView) getActivity().findViewById(R.id.counter);
 		sound = MediaPlayer.create(getActivity(), R.raw.umai);
 		ImageView caputure = (ImageView) getActivity().findViewById(
 				R.id.caputure);

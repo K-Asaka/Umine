@@ -33,15 +33,22 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_launcher" />
-
     </RelativeLayout>
 
-    <Button
+    <!--
+     <Button
         android:id="@+id/countBtn"
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:text="@string/umai" />
+        android:text="@string/umai" /> -->
+
+    <ImageButton
+        android:id="@+id/countBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/umais_button"/>
 
     <Button
         android:id="@+id/tweet"
