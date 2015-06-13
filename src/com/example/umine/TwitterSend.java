@@ -7,8 +7,10 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Environment;
+import android.util.Log;
 
 public class TwitterSend extends AsyncTask<Object, Void, Void> {
 	private final String APIKEY = "1g9K20f8lHSzS6A9kySjYbzJC";
@@ -18,17 +20,35 @@ public class TwitterSend extends AsyncTask<Object, Void, Void> {
 	private Twitter mTwitter;
 	private String msg;
 	private String count;
-	private final String IMAGE_PATH = Environment.getExternalStorageDirectory()
-			.getPath() + "/test/tmp.png";
+	private ProgressDialog dialog;
+	private Context con;
+
+	public TwitterSend(Context context) {
+		con = context;
+	}
+
+	@Override
+	protected void onPreExecute() {
+		// TODO 自動生成されたメソッド・スタブ
+		super.onPreExecute();
+		dialog = new ProgressDialog(con);
+		dialog.setTitle("pleas wait...");
+		dialog.setMessage("Twitter update now");
+		dialog.show();
+	}
 
 	@Override
 	protected Void doInBackground(Object... params) {
 		try {
-			count = String.valueOf(params[0]);
-			msg = String.valueOf(params[1]);
-			System.out.println(IMAGE_PATH);
-			File imgfile = new File(IMAGE_PATH);
+			Log.v("log", "twittersend(log)");
+			System.out.println("TwitterSend");
 
+			count = String.valueOf(params[0]);
+			System.out.println("カウント：" + count);
+			msg = String.valueOf(params[1]);
+			System.out.println("メッセージ：" + msg);
+			File imgfile = new File(String.valueOf(params[2]));
+			System.out.println("画像取得");
 			mTwitter = new TwitterFactory().getInstance();
 			mTwitter.setOAuthConsumer(APIKEY, APIKEY_SECRET);
 			AccessToken accessToken = new AccessToken(ACCESSTOKEN,
@@ -46,8 +66,10 @@ public class TwitterSend extends AsyncTask<Object, Void, Void> {
 
 	@Override
 	protected void onPostExecute(Void result) {
-		super.onPostExecute(result);
 
+		super.onPostExecute(result);
+		dialog.dismiss();
+		System.out.println("ぽすと");
 	}
 
 }

@@ -1,9 +1,13 @@
 package com.example.umine;
 
+import java.io.File;
+
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +20,11 @@ import android.widget.TextView;
 public class ButtonFragment extends Fragment {
 
 	static int cnt = 0;
-	String cntText = "";
-	MediaPlayer sound = null;
+	private String cntText = "";
+	private MediaPlayer sound = null;
+	TwitterSend send;
+	final String PATH = Environment.getExternalStorageDirectory().getPath()
+			+ "/test777/";
 
 	private static final String TAG = "ButtonFragment";
 
@@ -27,9 +34,6 @@ public class ButtonFragment extends Fragment {
 
 		Log.d(TAG, "onCreateView呼ばれた");
 		View v = inflater.inflate(R.layout.btn_count_layout, container, false);
-		TextView counter = (TextView) getActivity().findViewById(R.id.counter);
-		cntText = String.valueOf(cnt);
-		counter.setText(cnt);
 
 		return v;
 	}
@@ -40,11 +44,29 @@ public class ButtonFragment extends Fragment {
 		Button countBtn = (Button) getActivity().findViewById(R.id.countBtn);
 		Button tweetBtn = (Button) getActivity().findViewById(R.id.tweet);
 		TextView text = (TextView) getActivity().findViewById(R.id.none);
-		final TextView counter = (TextView) getActivity().findViewById(R.id.counter);
+		final TextView counter = (TextView) getActivity().findViewById(
+				R.id.counter);
 		sound = MediaPlayer.create(getActivity(), R.raw.umai);
-		ImageView caputure = (ImageView) getActivity().findViewById(R.id.caputure);
+		ImageView caputure = (ImageView) getActivity().findViewById(
+				R.id.caputure);
 		Bitmap bmp = ((BitmapDrawable) caputure.getDrawable()).getBitmap();
 
+		/*
+		 * shigure
+		 */
+
+		final File dir = new File(PATH);
+		if (!dir.exists()) {
+			dir.mkdir();
+		}
+
+		Bitmap bitmap = BitmapFactory.decodeFile(dir.getPath() + "/tmp.jpg");
+		caputure.setImageBitmap(bitmap);
+
+		/*
+		 *
+		 * shigure/>
+		 */
 		if (bmp == null) {
 			text.setText("写真がありません");
 		}
@@ -63,7 +85,8 @@ public class ButtonFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-
+				send = new TwitterSend(getActivity());
+				send.execute(cnt, "うまい!!!!", dir.getPath() + "/tmp.jpg");
 			}
 		});
 
