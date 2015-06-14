@@ -1,9 +1,10 @@
 package com.example.umine;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.media.MediaPlayer;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,8 @@ import android.widget.ImageButton;
 public class SumimasenFragment extends Fragment {
 	private static final String TAG = "SumimasenFragment";
 	private ImageButton btnSumimasen = null;
-	private MediaPlayer sound = null;
+//	private MediaPlayer sound = null;
+	private SoundPool sound;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -34,13 +36,15 @@ public class SumimasenFragment extends Fragment {
 			Bundle savedInstanceState) {
 		Log.v(TAG, "onCreateView()が呼ばれました。");
 		View view = inflater.inflate(R.layout.sumimasen_fragment, container, false);
-		sound = MediaPlayer.create(getActivity(), R.raw.excuseme);
+//		sound = MediaPlayer.create(getActivity(), R.raw.excuseme);
+		sound = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
+		final int souceId = sound.load(getActivity(), R.raw.excuseme, 1);
 		btnSumimasen = (ImageButton)view.findViewById(R.id.btnSumimasen);
 		btnSumimasen.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				sound.start();
+				sound.play(souceId, 1.0F, 1.0F, 1, 0, 1.0F);
 			}
 		});
 		return view;
