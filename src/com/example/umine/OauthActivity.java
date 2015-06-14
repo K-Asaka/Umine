@@ -13,11 +13,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class OauthActivity extends Activity {
-	private Button btn;
+	private ImageView btn;
 	private Twitter mTwitter;
 	private RequestToken mRquestToken;
 	private ProgressDialog dialog;
@@ -26,7 +26,7 @@ public class OauthActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_oauth);
-		btn = (Button) findViewById(R.id.btn_oauth);
+		btn = (ImageView) findViewById(R.id.btn_oauth);
 		btn.setOnClickListener(new OnClickListener() {
 
 			@Override
