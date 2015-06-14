@@ -22,7 +22,7 @@ public class SumimasenFragment extends Fragment {
 			Bundle savedInstanceState) {
 		Log.v(TAG, "onCreateView()が呼ばれました。");
 		View view = inflater.inflate(R.layout.sumimasen_fragment, container, false);
-		btnSumimasen = (ImageButton)view.findViewById(R.id.btnUmai);
+		btnSumimasen = (ImageButton)view.findViewById(R.id.btnSumimasen);
 		btnSumimasen.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
