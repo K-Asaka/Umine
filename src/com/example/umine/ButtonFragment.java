@@ -30,7 +30,7 @@ public class ButtonFragment extends Fragment {
 	private MediaPlayer sound = null;
 	TwitterSend send;
 	final String PATH = Environment.getExternalStorageDirectory().getPath()
-			+ "/test777/";
+			+ CameraFragment.DIRPATH;
 	SoundPool sound_;
 
 	private static final String TAG = "ButtonFragment";
@@ -38,7 +38,7 @@ public class ButtonFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		System.out.println(PATH);
 		Log.d(TAG, "onCreateView呼ばれた");
 		View v = inflater.inflate(R.layout.btn_count_layout, container, false);
 
@@ -79,8 +79,8 @@ public class ButtonFragment extends Fragment {
 		if (!dir.exists()) {
 			dir.mkdir();
 		}
-
-		Bitmap bitmap = BitmapFactory.decodeFile(dir.getPath() + "/tmp.jpg");
+		System.out.println(dir.getPath().toString());
+		Bitmap bitmap = BitmapFactory.decodeFile(dir.getPath() +"/"+ CameraFragment.PICPATH);
 		caputure.setImageBitmap(bitmap);
 
 		/*
@@ -124,7 +124,7 @@ public class ButtonFragment extends Fragment {
 					send = new TwitterSend(getActivity());
 					send.execute(cnt, shopName.getText().toString() + "\n"
 							+ twtext.getText().toString(), dir.getPath()
-							+ "/tmp.jpg");
+							+ CameraFragment.PICPATH);
 				}
 
 			}

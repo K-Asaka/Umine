@@ -10,11 +10,10 @@ import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.View.OnTouchListener;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 public class CameraFragment extends Fragment {
@@ -23,8 +22,8 @@ public class CameraFragment extends Fragment {
 	/*
 	 * 保存フォルダ名、ファイル名
 	 */
-	private static final String DIRPATH ="/Umine/";
-	private static final String PICPATH ="uminebg";
+	public static final String DIRPATH ="/Umine/";
+	public static final String PICPATH ="uminebg.jpg";
 
 	private boolean hasSurface=false;
 	private Camera camera;
@@ -72,7 +71,15 @@ public class CameraFragment extends Fragment {
 
 	};
 	/*
-	 * pictureコールバック
+	 *ShutterCallback
+	 */
+	private Camera.ShutterCallback shutterListener=new Camera.ShutterCallback() {
+		@Override
+		public void onShutter() {
+		}
+	};
+	/*
+	 * pictureCallback
 	 */
 	private Camera.PictureCallback pictrueListener = new Camera.PictureCallback() {
 
@@ -83,7 +90,7 @@ public class CameraFragment extends Fragment {
 
 				File file= new File(saveDir);
 					if(file.mkdir())System.out.println("ディレクトリ作成");
-				String imgPath=saveDir+PICPATH+".jpg";
+				String imgPath=saveDir+PICPATH;
 				System.out.println(imgPath);
 				FileOutputStream fos;
 				try{
@@ -98,17 +105,15 @@ public class CameraFragment extends Fragment {
 		}
 	};
 	/*
-	 * ontouchCallback
+	 * onclicklistener
 	 */
-	OnTouchListener ontouchListener = new OnTouchListener() {
+	OnClickListener onclickListener = new OnClickListener() {
 		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			if(event.getAction()==MotionEvent.ACTION_DOWN)
-				if(camera!=null)
-					camera.takePicture(null, null, pictrueListener);
-			return false;
+		public void onClick(View v) {
+			camera.takePicture(shutterListener, null, pictrueListener);
 		}
 	};
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -118,7 +123,7 @@ public class CameraFragment extends Fragment {
 		SurfaceHolder holder=camSurfaceView.getHolder();
 		holder.addCallback(surfaceListener);
 		holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-		view.setOnTouchListener(ontouchListener);
+		view.setOnClickListener(onclickListener);
 		return view;
 	}
 
@@ -162,3 +167,4 @@ public class CameraFragment extends Fragment {
 		Log.v(TAG, "onStop()が呼ばれました。");
 	}
 }
+
