@@ -2,6 +2,8 @@ package com.example.umine;
 
 import java.io.File;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -53,6 +56,8 @@ public class ButtonFragment extends Fragment {
 				R.id.countBtn);
 		ImageButton tweetBtn = (ImageButton) getActivity().findViewById(
 				R.id.tweet);
+		ImageButton destroyBtn = (ImageButton) getActivity().findViewById(
+				R.id.destroy);
 
 		TextView text = (TextView) getActivity().findViewById(R.id.none);
 		final TextView counter = (TextView) getActivity().findViewById(
@@ -80,7 +85,8 @@ public class ButtonFragment extends Fragment {
 			dir.mkdir();
 		}
 		System.out.println(dir.getPath().toString());
-		Bitmap bitmap = BitmapFactory.decodeFile(dir.getPath() +"/"+ CameraFragment.PICPATH);
+		Bitmap bitmap = BitmapFactory.decodeFile(dir.getPath() + "/"
+				+ CameraFragment.PICPATH);
 		caputure.setImageBitmap(bitmap);
 
 		/*
@@ -123,12 +129,37 @@ public class ButtonFragment extends Fragment {
 				} else {
 					send = new TwitterSend(getActivity());
 					send.execute(cnt, shopName.getText().toString() + "\n"
-							+ twtext.getText().toString(), dir.getPath()
+							+ twtext.getText().toString(), dir.getPath() + "/"
 							+ CameraFragment.PICPATH);
 				}
 
 			}
 		});
+		destroyBtn.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				AlertDialog.Builder alert = new AlertDialog.Builder(
+						getActivity());
+				alert.setTitle("アカウント解除");
+				alert.setMessage("アプリとアカウントとの連携を解除しますか？");
+				alert.setPositiveButton("はい",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Twitter_Util.keyDestroy();
+							}
+						});
+
+				alert.setNegativeButton("いいえ",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+
+							}
+						});
+				alert.show();
+			}
+		});
 	}
 }

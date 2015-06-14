@@ -85,4 +85,11 @@
         android:fadingEdge="none"
         android:src="@drawable/btn_tweet" />
 
+    <ImageButton
+        android:id="@+id/destroy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/kaijyo" />
+
 </LinearLayout>

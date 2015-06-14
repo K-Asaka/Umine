@@ -6,6 +6,7 @@ import twitter4j.auth.AccessToken;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.widget.Toast;
 
 public class Twitter_Util {
 	// アプリケーションキーコード
@@ -72,6 +73,7 @@ public class Twitter_Util {
 		SharedPreferences preferences = getContext().getSharedPreferences(
 				PREFNAME, Context.MODE_PRIVATE);
 		preferences.edit().clear().commit();
+		Toast.makeText(getContext(), "解除しました", Toast.LENGTH_SHORT).show();
 	}
 
 }
