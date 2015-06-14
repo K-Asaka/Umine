@@ -3,8 +3,6 @@ package com.example.umine;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -22,13 +20,23 @@ import android.view.ViewGroup;
 public class CameraFragment extends Fragment {
 
 	private static final String TAG = "CameraFragment";
+	/*
+	 * 保存フォルダ名、ファイル名
+	 */
+	private static final String DIRPATH ="/Umine/";
+	private static final String PICPATH ="uminebg";
+
+	private boolean hasSurface=false;
 	private Camera camera;
-	//Surfaceリスナ
+	/*
+	 * SurfaceCallback
+	 */
 	private SurfaceHolder.Callback surfaceListener = new SurfaceHolder.Callback() {
 		@Override
 		public void surfaceCreated(SurfaceHolder holder) {
 			try {
-				camera = Camera.open();
+				hasSurface=true;
+				if(camera==null)camera = Camera.open();
 				camera.setPreviewDisplay(holder);
 				camera.setDisplayOrientation(90);
 			} catch(IOException e) {
@@ -47,7 +55,6 @@ public class CameraFragment extends Fragment {
             Log.d(TAG, "getPreviewSize width:" + size.width + " size.height:" + size.height);
 
             // プレビューのサイズを変更
-            // parameters.setPreviewSize(width, height);    // 画面サイズに合わせて変更しようとしたが失敗する
             parameters.setPreviewSize(640, 480);            // 使用できるサイズはカメラごとに決まっている
             parameters.setRotation(90);
 
@@ -59,21 +66,24 @@ public class CameraFragment extends Fragment {
 
 		@Override
 		public void surfaceDestroyed(SurfaceHolder holder) {
-			camera.stopPreview();
-			camera.release();
+			hasSurface=false;
+			onPause();
 		}
 
 	};
+	/*
+	 * pictureコールバック
+	 */
 	private Camera.PictureCallback pictrueListener = new Camera.PictureCallback() {
 
 		@Override
 		public void onPictureTaken(byte[] data, Camera camera) {
 			if(data!=null){
-				String saveDir=Environment.getExternalStorageDirectory().getPath()+"/test9999999/";
+				String saveDir=Environment.getExternalStorageDirectory().getPath()+DIRPATH;
 
 				File file= new File(saveDir);
 					if(file.mkdir())System.out.println("ディレクトリ作成");
-				String imgPath=saveDir+new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime())+".jpg";
+				String imgPath=saveDir+PICPATH+".jpg";
 				System.out.println(imgPath);
 				FileOutputStream fos;
 				try{
@@ -87,6 +97,9 @@ public class CameraFragment extends Fragment {
 			camera.startPreview();
 		}
 	};
+	/*
+	 * ontouchCallback
+	 */
 	OnTouchListener ontouchListener = new OnTouchListener() {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
@@ -96,14 +109,6 @@ public class CameraFragment extends Fragment {
 			return false;
 		}
 	};
-//	private Camera.PictureCallback pictureListener= new Camera.PictureCallback() {
-//
-//		@Override
-//		public void onPictureTaken(byte[] data, Camera camera) {
-//			// TODO 自動生成されたメソッド・スタブ
-//
-//		}
-//	};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -135,6 +140,7 @@ public class CameraFragment extends Fragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		if(camera==null)camera=Camera.open();
 		Log.v(TAG, "onResume()が呼ばれました。");
 	}
 
@@ -142,6 +148,10 @@ public class CameraFragment extends Fragment {
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		if(camera!=null){
+			camera.release();
+			camera=null;
+		}
 		Log.v(TAG, "onPause()が呼ばれました。");
 	}
 
@@ -151,5 +161,4 @@ public class CameraFragment extends Fragment {
 		super.onStop();
 		Log.v(TAG, "onStop()が呼ばれました。");
 	}
-
 }

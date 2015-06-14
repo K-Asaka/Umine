@@ -3,8 +3,6 @@ package com.example.umine;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import android.content.Context;
 import android.hardware.Camera;
@@ -65,7 +63,7 @@ public class CamView extends SurfaceView implements Callback ,PictureCallback{
 
 			file.mkdir();
 
-		String imgPath=saveDir+new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime())+".jpg";
+		String imgPath=saveDir+"uminebg.jpg";
 		System.out.println(imgPath);
 		FileOutputStream fos;
 		System.out.println("0");
