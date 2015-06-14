@@ -4,9 +4,10 @@
     <string name="app_name">Umine</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
     <string name="umai">うまい！</string>
     <string name="twitter">押した回数をツイートする</string>
-
+    <string name="btn_oauth">Authenticate</string>
+    <!-- テキスト -->
+    <string name="text_oauth">初回起動の為、アプリケーション連携をしていただく必要があります。</string>
 
 </resources>

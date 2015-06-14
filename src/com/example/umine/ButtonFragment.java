@@ -2,6 +2,7 @@ package com.example.umine;
 
 import java.io.File;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,12 +42,15 @@ public class ButtonFragment extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		//Button countBtn = (Button) getActivity().findViewById(R.id.countBtn);
-		//Button tweetBtn = (Button) getActivity().findViewById(R.id.tweet);
-		ImageButton countBtn = (ImageButton)getActivity().findViewById(R.id.countBtn);
-		ImageButton tweetBtn = (ImageButton) getActivity().findViewById(R.id.tweet);
+		// Button countBtn = (Button) getActivity().findViewById(R.id.countBtn);
+		// Button tweetBtn = (Button) getActivity().findViewById(R.id.tweet);
+		ImageButton countBtn = (ImageButton) getActivity().findViewById(
+				R.id.countBtn);
+		ImageButton tweetBtn = (ImageButton) getActivity().findViewById(
+				R.id.tweet);
 		TextView text = (TextView) getActivity().findViewById(R.id.none);
-		final TextView counter = (TextView) getActivity().findViewById(R.id.counter);
+		final TextView counter = (TextView) getActivity().findViewById(
+				R.id.counter);
 		sound = MediaPlayer.create(getActivity(), R.raw.umai);
 		ImageView caputure = (ImageView) getActivity().findViewById(
 				R.id.caputure);
@@ -87,8 +90,15 @@ public class ButtonFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				send = new TwitterSend(getActivity());
-				send.execute(cnt, "うまい!!!!", dir.getPath() + "/tmp.jpg");
+				if (!Twitter_Util.serchAccessToken()) {
+					Log.v("MainActivity", "start oauth");
+					Intent intent = new Intent(getActivity(),
+							OauthActivity.class);
+					startActivity(intent);
+				} else {
+					send = new TwitterSend(getActivity());
+					send.execute(cnt, "うまい!!!!", dir.getPath() + "/tmp.jpg");
+				}
 			}
 		});
 

@@ -5,8 +5,6 @@ import java.io.File;
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -41,21 +39,13 @@ public class TwitterSend extends AsyncTask<Object, Void, Void> {
 	protected Void doInBackground(Object... params) {
 		try {
 			Log.v("log", "twittersend(log)");
-			System.out.println("TwitterSend");
-
 			count = String.valueOf(params[0]);
-			System.out.println("カウント：" + count);
 			msg = String.valueOf(params[1]);
-			System.out.println("メッセージ：" + msg);
 			File imgfile = new File(String.valueOf(params[2]));
 			System.out.println("画像取得");
-			mTwitter = new TwitterFactory().getInstance();
-			mTwitter.setOAuthConsumer(APIKEY, APIKEY_SECRET);
-			AccessToken accessToken = new AccessToken(ACCESSTOKEN,
-					ACCESSTOKEN_SECRET);
-			mTwitter.setOAuthAccessToken(accessToken);
-			StatusUpdate status = new StatusUpdate("msg:" + msg + "\ncount:"
-					+ count);
+			mTwitter = Twitter_Util.getTwitter();
+			StatusUpdate status = new StatusUpdate(msg + "\nうまい点数は：" + count
+					+ "です！！！！！");
 			status.media(imgfile);
 			mTwitter.updateStatus(status);
 		} catch (TwitterException e) {

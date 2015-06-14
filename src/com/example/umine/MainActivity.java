@@ -1,5 +1,3 @@
-
-
 package com.example.umine;
 
 import android.os.Bundle;
@@ -15,10 +13,10 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		Twitter_Util.setContext(this);
 		FragmentManager fManager = getSupportFragmentManager();
 		UmineFragmentAdapter adpt = new UmineFragmentAdapter(fManager);
-		ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+		ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
 		viewPager.setCurrentItem(1);
 		viewPager.setAdapter(adpt);
 	}
@@ -42,4 +40,3 @@ public class MainActivity extends FragmentActivity {
 		return super.onOptionsItemSelected(item);
 	}
 }
-
