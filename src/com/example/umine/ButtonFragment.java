@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Environment;
@@ -30,7 +29,6 @@ public class ButtonFragment extends Fragment {
 
 	static int cnt = 0;
 	private String cntText = "";
-	private MediaPlayer sound = null;
 	TwitterSend send;
 	final String PATH = Environment.getExternalStorageDirectory().getPath()
 			+ CameraFragment.DIRPATH;
@@ -62,7 +60,6 @@ public class ButtonFragment extends Fragment {
 		TextView text = (TextView) getActivity().findViewById(R.id.none);
 		final TextView counter = (TextView) getActivity().findViewById(
 				R.id.counter);
-		sound = MediaPlayer.create(getActivity(), R.raw.umai);
 
 		final EditText twtext = (EditText) getActivity().findViewById(
 				R.id.twtext);
