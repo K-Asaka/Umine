@@ -87,7 +87,7 @@ public class CameraFragment extends Fragment {
 				System.out.println(imgPath);
 				FileOutputStream fos;
 				try{
-					fos=new FileOutputStream(imgPath,true);
+					fos=new FileOutputStream(imgPath);
 					fos.write(data);
 					fos.close();
 				}catch(Exception e){
