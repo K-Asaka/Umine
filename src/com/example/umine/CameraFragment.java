@@ -126,7 +126,7 @@ public class CameraFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		Log.v(TAG, "onActivityCreated()が呼ばれ	ました。");
+		Log.v(TAG, "onActivityCreated()が呼ばれました。");
 	}
 
 	@Override
