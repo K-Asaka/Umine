@@ -55,7 +55,7 @@ public class CameraFragment extends Fragment {
 
             // プレビューのサイズを変更
             parameters.setPreviewSize(640, 480);            // 使用できるサイズはカメラごとに決まっている
-//            parameters.setRotation(90);
+            parameters.setRotation(90);
 
             // パラメーターセット
             camera.setParameters(parameters);

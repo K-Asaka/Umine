@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 public class UmineFragmentAdapter extends FragmentPagerAdapter {
-	private static final int fragmentNum = 4;
+	private static final int fragmentNum = 5;
 
 	public UmineFragmentAdapter(FragmentManager fm) {
 		super(fm);
@@ -15,15 +15,15 @@ public class UmineFragmentAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int pos) {
 		switch (pos) {
 		case 0:
-			return new CameraFragment();
-		case 1:
 			return new UmineFragment();
-		case 2:
-			return new ButtonFragment();
+		case 1:
+			return new CameraFragment();
 		case 3:
+			return new ButtonFragment();
+		case 4:
 			return new SumimasenFragment();
 		default:
-			return new CameraFragment();
+			return new Fragment();
 		}
 	}
 
