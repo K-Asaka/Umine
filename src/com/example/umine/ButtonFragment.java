@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,10 +59,10 @@ public class ButtonFragment extends Fragment {
 				R.id.counter);
 		sound = MediaPlayer.create(getActivity(), R.raw.umai);
 
-//		final EditText twtext = (EditText) getActivity().findViewById(
-//				R.id.twtext);
-//		final EditText shopName = (EditText) getActivity().findViewById(
-//				R.id.shopName);
+		final EditText twtext = (EditText) getActivity().findViewById(
+				R.id.twtext);
+		final EditText shopName = (EditText) getActivity().findViewById(
+				R.id.shopName);
 
 		sound_ = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
 		final int soundId = sound_.load(getActivity(), R.raw.umai, 1);
@@ -121,9 +122,9 @@ public class ButtonFragment extends Fragment {
 					startActivity(intent);
 				} else {
 					send = new TwitterSend(getActivity());
-//					send.execute(cnt, shopName.getText().toString() + "\n"
-//							+ twtext.getText().toString(), dir.getPath()
-//							+ "/tmp.jpg");
+					send.execute(cnt, shopName.getText().toString() + "\n"
+							+ twtext.getText().toString(), dir.getPath()
+							+ "/tmp.jpg");
 				}
 
 			}
