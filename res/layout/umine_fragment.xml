@@ -14,5 +14,4 @@
         android:fadingEdge="horizontal|vertical"
         android:src="@drawable/umai_button" />
 
->>>>>>> refs/remotes/origin/last_asaka
 </LinearLayout>
