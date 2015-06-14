@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -84,7 +85,9 @@ public class ButtonFragment extends Fragment {
 		System.out.println(dir.getPath().toString());
 		Bitmap bitmap = BitmapFactory.decodeFile(dir.getPath() + "/"
 				+ CameraFragment.PICPATH);
-		caputure.setImageBitmap(bitmap);
+		Matrix matrix=new Matrix();
+		matrix.postRotate(90);
+		caputure.setImageBitmap(Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix,false) );
 
 		/*
 		 *
