@@ -15,15 +15,15 @@ public class UmineFragmentAdapter extends FragmentPagerAdapter {
 	public Fragment getItem(int pos) {
 		switch (pos) {
 		case 0:
-			return new UmineFragment();
-		case 1:
 			return new CameraFragment();
+		case 1:
+			return new UmineFragment();
 		case 2:
 			return new ButtonFragment();
 		case 3:
 			return new SumimasenFragment();
 		default:
-			return new UmineFragment();
+			return new CameraFragment();
 		}
 	}
 
