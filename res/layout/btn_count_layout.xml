@@ -61,28 +61,13 @@
         android:text="@string/twitter" />
     -->
 
-    <EditText
-        android:id="@+id/shopName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="店名"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/twtext"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="コメント入力"
-        android:inputType="text" />
-
-    <ImageButton
+    <ImageButton 
         android:id="@+id/tweet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:src="@drawable/btn_tweet"
         android:fadingEdge="none"
-        android:src="@drawable/btn_tweet" />
+        />
 
 </LinearLayout>
