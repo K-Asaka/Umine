@@ -47,24 +47,18 @@ public class ButtonFragment extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		ImageButton countBtn = (ImageButton) getActivity().findViewById(
-				R.id.countBtn);
-		ImageButton tweetBtn = (ImageButton) getActivity().findViewById(
-				R.id.tweet);
+		ImageButton countBtn = (ImageButton) getActivity().findViewById(R.id.countBtn);
+		ImageButton tweetBtn = (ImageButton) getActivity().findViewById(R.id.tweet);
 
 		TextView text = (TextView) getActivity().findViewById(R.id.none);
-		final TextView counter = (TextView) getActivity().findViewById(
-				R.id.counter);
-		final EditText twtext = (EditText) getActivity().findViewById(
-				R.id.twtext);
-		final EditText shopName = (EditText) getActivity().findViewById(
-				R.id.shopName);
+		final TextView counter = (TextView) getActivity().findViewById(R.id.counter);
+		final EditText twtext = (EditText) getActivity().findViewById(R.id.twtext);
+		final EditText shopName = (EditText) getActivity().findViewById(R.id.shopName);
 
 		sound_ = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
 		final int soundId = sound_.load(getActivity(), R.raw.umai, 1);
 
-		ImageView caputure = (ImageView) getActivity().findViewById(
-				R.id.caputure);
+		ImageView caputure = (ImageView) getActivity().findViewById(R.id.caputure);
 		Bitmap bmp = ((BitmapDrawable) caputure.getDrawable()).getBitmap();
 
 		/*
@@ -111,9 +105,9 @@ public class ButtonFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				send = new TwitterSend(getActivity());
-				send.execute(cnt, shopName.getText().toString() + "\n"
-						+ twtext.getText().toString(), dir.getPath()
-						+ "/tmp.jpg");
+				send.execute(cnt, shopName.getText().toString()
+						    + "\n"
+						    + twtext.getText().toString(), dir.getPath()+ "/tmp.jpg");
 			}
 		});
 
